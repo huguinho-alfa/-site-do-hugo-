@@ -52,7 +52,171 @@
  <hr style="border: 0; border-top: 1px solid #7126a3; margin: 30px auto; max-width: 90%; opacity: 0.5;">
 
  <h2>Os outros woodstocks</h2>
-<P>O sucesso da marca gerou edições comemorativas posteriores, mas com climas bem diferentes do original:Woodstock '94: Celebrou os 25 anos do evento com cerca de 350 mil pessoas. Ficou conhecido como "Mudstock" por causa de outra grande tempestade de lama, misturando artistas originais com bandas dos anos 90 como Green Day e Nine Inch Nails.Woodstock '99: Planejado para os 30 anos, terminou em desastre. O calor extremo, preços abusivos de água e comida, e falhas graves de segurança geraram revolta no público. O festival culminou em episódios graves de violência, saques, incêndios e denúncias de abuso sexual ao som de bandas como Red Hot Chili Peppers e Limp Bizkit.Woodstock 50 (2019): Uma tentativa de celebrar o cinquentenário foi cancelada semanas antes após problemas severos de financiamento, perda do local e desistência dos artistas principais.</P>
+<P>O sucesso da marca gerou edições comemorativas posteriores, mas com climas bem diferentes do original:Woodstock '94: Celebrou os 25 anos do evento com cerca de 350 mil pessoas. Ficou conhecido como "Mudstock" por causa de outra grande tempestade de lama, misturando artistas originais com bandas dos anos 90 como Green Day e Nine Inch Nails.Woodstock '99: Planejado para os 30 anos, terminou em desastre. O calor extremo, preços abusivos de água e comida, e falhas graves de segurança geraram revolta no público. O festival culminou em episódios graves de violência, saques, incêndios e denúncias de abuso sexual ao som de bandas como Red Hot Chili Peppers e Limp Bizkit.Woodstock 50 (2019): Uma tentativa de celebrar o cinquentenário foi cancelada semanas antes após problemas severos de financiamento, perda do local e desistência dos artistas principais.<p></p>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carrossel Woodstock</title>
+
+    <style>
+        .carrossel {
+            width: 80%;
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+            text-align: center;
+        }
+
+        .carrossel img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .botao {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            font-size: 30px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .botao:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .anterior {
+            left: 10px;
+        }
+
+        .proximo {
+            right: 10px;
+        }
+
+        .legenda {
+            margin-top: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .bolinhas {
+            margin-top: 15px;
+        }
+
+        .bolinha {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .bolinha.ativa {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="carrossel">
+
+        <img id="imagemCarrossel" src="woodstock-99-3.jpg" alt="Woodstock 1999">
+
+        <button class="botao anterior" onclick="imagemAnterior()">❮</button>
+
+        <button class="botao proximo" onclick="proximaImagem()">❯</button>
+
+        <div class="legenda" id="legenda">
+            Woodstock 1999
+        </div>
+
+        <div class="bolinhas">
+            <span class="bolinha ativa" onclick="mostrarImagem(0)"></span>
+            <span class="bolinha" onclick="mostrarImagem(1)"></span>
+            <span class="bolinha" onclick="mostrarImagem(2)"></span>
+        </div>
+
+    </div>
+
+    <script>
+
+        let imagens = [
+            "woodstock-99-3.jpg",
+            "woodstock-99-1.jpg",
+            "woodstock-99-2.jpg"
+        ];
+
+        let legendas = [
+            "Woodstock 1999",
+            "Woodstock 1999",
+            "Woodstock 1999"
+        ];
+
+        let indice = 0;
+
+        function mostrarImagem(numero) {
+
+            indice = numero;
+
+            document.getElementById("imagemCarrossel").src = imagens[indice];
+
+            document.getElementById("imagemCarrossel").alt = legendas[indice];
+
+            document.getElementById("legenda").textContent = legendas[indice];
+
+            let bolinhas = document.querySelectorAll(".bolinha");
+
+            bolinhas.forEach(function(bolinha) {
+                bolinha.classList.remove("ativa");
+            });
+
+            bolinhas[indice].classList.add("ativa");
+        }
+
+        function proximaImagem() {
+
+            indice++;
+
+            if (indice >= imagens.length) {
+                indice = 0;
+            }
+
+            mostrarImagem(indice);
+        }
+
+        function imagemAnterior() {
+
+            indice--;
+
+            if (indice < 0) {
+                indice = imagens.length - 1;
+            }
+
+            mostrarImagem(indice);
+        }
+
+        // Troca automaticamente a imagem a cada 5 segundos
+        setInterval(proximaImagem, 5000);
+
+    </script>
+
+
+
 
 
 </body>
